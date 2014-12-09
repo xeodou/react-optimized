@@ -26,7 +26,7 @@ var App = React.createClass({
   render: function () {
     return (
       <div>
-        <Message {...this.state.message}/>
+        <Message/>
         <Project />
       </div>
     );

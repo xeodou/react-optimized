@@ -5,6 +5,7 @@ var assign = require('object-assign');
 var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = 'change';
+var MESSAGE_EVENT = 'message';
 
 var App = {
   message: {}
@@ -30,6 +31,22 @@ var AppStore = assign({}, EventEmitter.prototype, {
     return App;
   },
 
+  getMessage: function() {
+    return App.message;
+  },
+
+  emitMessageChange: function () {
+    this.emit(MESSAGE_EVENT);
+  },
+
+  addMessageChangeListener: function (cb) {
+    this.on(MESSAGE_EVENT, cb);
+  },
+
+  removeMessageChangeListener: function (cb) {
+    this.removeListener(MESSAGE_EVENT, cb);
+  },
+
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   },
@@ -49,10 +66,10 @@ AppStore.dispatchToken = AppDispatcher.register(function (payload) {
   switch (action.type) {
   case ActionTypes.SHOW_MESSAGE:
     showMessage(action.data);
-    return AppStore.emitChange();
+    return AppStore.emitMessageChange();
   case AppConstants.HIDDEN_MESSAG:
     hiddenMessage();
-    return AppStore.emitChange();
+    return AppStore.emitMessageChange();
   }
 });
 

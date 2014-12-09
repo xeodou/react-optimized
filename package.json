@@ -1,0 +1,39 @@
+{
+  "name": "react-optimized",
+  "version": "0.1.0",
+  "description": "Reactjs Application optimized demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "browserify": "NODE_ENV=production ./node_modules/.bin/browserify index.js --transform [reactify --es6] --transform envify -v --outfile dist/app.js",
+    "watchify": "./node_modules/.bin/watchify index.js --debug --transform [reactify --es6] --transform envify  -v --outfile dist/app.js",
+    "copy": "mkdir -p dist && cp index.html dist",
+    "dist": "npm run clean && npm run copy && npm run browserify ",
+    "dev": "npm run dist && npm run watchify",
+    "clean": "rm -rf dist/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:xeodou/react-optimized.git"
+  },
+  "keywords": [
+    "react",
+    "flux",
+    "optimized"
+  ],
+  "author": "xeodou@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xeodou/react-optimized/issues"
+  },
+  "homepage": "https://github.com/xeodou/react-optimized",
+  "devDependencies": {
+    "browserify": "^7.0.0",
+    "envify": "^3.2.0",
+    "flux": "^2.0.1",
+    "object-assign": "^2.0.0",
+    "react": "^0.12.1",
+    "reactify": "^0.17.1",
+    "watchify": "^2.1.1"
+  }
+}
